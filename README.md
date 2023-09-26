@@ -1,4 +1,6 @@
-# testing_dummy
+# Travel Information APP - With Dummy Data
+
+Copyright - Yusril prayoga
 
 A new Flutter project.
 
