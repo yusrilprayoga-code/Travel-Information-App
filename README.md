@@ -1,4 +1,4 @@
-# Travel Information APP - With Dummy Data
+# Travel Information App - With Dummy Data
 
 Copyright - Yusril prayoga
 
