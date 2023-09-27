@@ -7,6 +7,7 @@ class TourismPlace {
   String ticketPrice;
   String imageAsset;
   List<String> imageUrls;
+  bool isFavorite = false;
 
   TourismPlace({
     required this.name,
@@ -17,6 +18,7 @@ class TourismPlace {
     required this.ticketPrice,
     required this.imageAsset,
     required this.imageUrls,
+    this.isFavorite = false,
   });
 }
 
