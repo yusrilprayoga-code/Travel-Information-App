@@ -75,6 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: SafeArea(
         child: Column(
           children: [
+            //bagian atas
             Container(
                 margin: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
                 child: Row(
@@ -88,6 +89,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ],
                 )),
+
+            //bagian search
             Container(
               margin: EdgeInsets.symmetric(
                 horizontal: 20,
@@ -112,63 +115,11 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
 
+            //bagian list card
             SizedBox(height: 20),
-            Container(
-              height: 200,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: tourismPlaceList.length,
-                itemBuilder: (context, index) {
-                  final TourismPlace place = tourismPlaceList[index];
-                  return InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => DetailsScreen(place: place)),
-                      );
-                    },
-                    child: Container(
-                      margin: EdgeInsets.only(left: 20),
-                      width: 150,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          image: DecorationImage(
-                              image: NetworkImage(place.imageUrls[0]),
-                              fit: BoxFit.cover)),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            gradient: LinearGradient(
-                                begin: Alignment.bottomRight,
-                                stops: [
-                                  0.3,
-                                  0.9
-                                ],
-                                colors: [
-                                  Colors.black.withOpacity(.8),
-                                  Colors.black.withOpacity(.1)
-                                ])),
-                        child: Align(
-                          alignment: Alignment.bottomLeft,
-                          child: Padding(
-                            padding: const EdgeInsets.all(15.0),
-                            child: Text(
-                              place.name,
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-            // berikan spasi list card beserta shadow
+            TourismPlaceList(),
+
+            // bagian recommended places
             Container(
               margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               padding: EdgeInsets.symmetric(horizontal: 15),
@@ -304,6 +255,71 @@ class _MyHomePageState extends State<MyHomePage> {
             label: 'Profile',
           ),
         ],
+      ),
+    );
+  }
+}
+
+class TourismPlaceList extends StatelessWidget {
+  const TourismPlaceList({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 200,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: tourismPlaceList.length,
+        itemBuilder: (context, index) {
+          final TourismPlace place = tourismPlaceList[index];
+          return InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => DetailsScreen(place: place)),
+              );
+            },
+            child: Container(
+              margin: EdgeInsets.only(left: 20),
+              width: 150,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  image: DecorationImage(
+                      image: NetworkImage(place.imageUrls[0]),
+                      fit: BoxFit.cover)),
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    gradient: LinearGradient(
+                        begin: Alignment.bottomRight,
+                        stops: [
+                          0.3,
+                          0.9
+                        ],
+                        colors: [
+                          Colors.black.withOpacity(.8),
+                          Colors.black.withOpacity(.1)
+                        ])),
+                child: Align(
+                  alignment: Alignment.bottomLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Text(
+                      place.name,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
       ),
     );
   }
